@@ -1,6 +1,8 @@
 package com.github.paczarny.furnituremagazine.domain;
 
 
+import java.util.Objects;
+
 public class Address {
     private String place;
     private String zipCode;
@@ -9,15 +11,16 @@ public class Address {
     private String apartmentNumber;
     private String street;
 
-    public Address() {}
+    public Address() {
+    }
 
-    public Address(String place, String zipCode, String country, String houseNumber, String apartmentNumber,String street) {
-        this.apartmentNumber=apartmentNumber;
-        this.country=country;
-        this.houseNumber=houseNumber;
-        this.place=place;
-        this.street=street;
-        this.zipCode=zipCode;
+    public Address(String place, String zipCode, String country, String houseNumber, String apartmentNumber, String street) {
+        this.apartmentNumber = apartmentNumber;
+        this.country = country;
+        this.houseNumber = houseNumber;
+        this.place = place;
+        this.street = street;
+        this.zipCode = zipCode;
     }
 
     public void setPlace(String place) {
@@ -68,4 +71,21 @@ public class Address {
         return street;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(place, address.place) &&
+                Objects.equals(zipCode, address.zipCode) &&
+                Objects.equals(country, address.country) &&
+                Objects.equals(houseNumber, address.houseNumber) &&
+                Objects.equals(apartmentNumber, address.apartmentNumber) &&
+                Objects.equals(street, address.street);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(place, zipCode, country, houseNumber, apartmentNumber, street);
+    }
 }
