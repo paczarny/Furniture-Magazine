@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>furnituremagazine</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Furniture magazine app</description>
 
     <properties>
         <java.version>11</java.version>
@@ -34,11 +34,19 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.db4o/com.db4o.nativequery -->
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>com.db4o.nativequery</artifactId>
+            <version>7.7.67</version>
+        </dependency>
+
     </dependencies>
 
     <build>
