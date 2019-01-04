@@ -4,7 +4,7 @@ package com.github.paczarny.furnituremagazine.domain;
 import java.util.Objects;
 
 public class Address {
-    private String place;
+    private String city;
     private String zipCode;
     private String country;
     private String houseNumber;
@@ -14,17 +14,17 @@ public class Address {
     public Address() {
     }
 
-    public Address(String place, String zipCode, String country, String houseNumber, String apartmentNumber, String street) {
+    public Address(String city, String zipCode, String country, String houseNumber, String apartmentNumber, String street) {
         this.apartmentNumber = apartmentNumber;
         this.country = country;
         this.houseNumber = houseNumber;
-        this.place = place;
+        this.city = city;
         this.street = street;
         this.zipCode = zipCode;
     }
 
     public void setPlace(String place) {
-        this.place = place;
+        this.city = place;
     }
 
     public void setApartmentNumber(String apartmentNumber) {
@@ -56,7 +56,7 @@ public class Address {
     }
 
     public String getPlace() {
-        return place;
+        return city;
     }
 
     public String getZipCode() {
@@ -76,7 +76,7 @@ public class Address {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Address address = (Address) o;
-        return Objects.equals(place, address.place) &&
+        return Objects.equals(city, address.city) &&
                 Objects.equals(zipCode, address.zipCode) &&
                 Objects.equals(country, address.country) &&
                 Objects.equals(houseNumber, address.houseNumber) &&
@@ -86,6 +86,6 @@ public class Address {
 
     @Override
     public int hashCode() {
-        return Objects.hash(place, zipCode, country, houseNumber, apartmentNumber, street);
+        return Objects.hash(city, zipCode, country, houseNumber, apartmentNumber, street);
     }
 }

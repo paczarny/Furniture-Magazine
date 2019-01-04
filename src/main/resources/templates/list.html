@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>All results</title>
+</head>
+<body>
+<div th:if="not ${allMagazines.isEmpty()}">
+    <h1>All magazines:</h1>
+    <table border="1">
+        <tr>
+            <th>Magazine</th>
+            <th>City</th>
+            <th>Street</th>
+            <th>ZipCode</th>
+            <th></th>
+        </tr>
+        <tr th:each="singleMagazina: ${allMagazines}" th:object="${singleMagazine}">
+            <td th:text="*{name}"></td>
+            <td th:tetx="*{address.getPlace}"></td>
+            <td th:tetx="*{address.getStreet}"></td>
+            <td th:tetx="*{address.getZipCode}"></td>
+        </tr>
+    </table>
+</div>
+<div th:if="${allMagazines.isEmpty()}">
+    <h1>There is no magazine yet :(</h1>
+</div>
+</body>
+</html>
