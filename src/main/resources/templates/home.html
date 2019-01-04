@@ -7,26 +7,26 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
     <style>
-    .jumbotron{
-    background-color: #128870;
-    color:white;
-    }
-    .page-header{
-    padding-top: 3px;
-    background-color:#303030;
-    color:white;
-    border-bottom: none;
-    text-align: center;
-    }
-    a{
-    color: black;
-    }
-    body{
-    background-color: #404040;
-    }
-    .option{
-        color: black;
-    }
+        .jumbotron{
+            background-color: #128870;
+            color:white;
+        }
+        .page-header{
+            padding-top: 3px;
+            background-color:#303030;
+            color:white;
+            border-bottom: none;
+            text-align: center;
+        }
+        a{
+            color: black;
+        }
+        body{
+            background-color: #404040;
+        }
+        .option{
+            color: black;
+        }
     </style>
 
 </head>
@@ -45,24 +45,30 @@
         <h3>Znajdź wszystkich producentów którzy mają conajmniej jeden mebel w ofercie</h3>
         <a href="#">Pokaz</a>
     </div>
+
+
     <div class="jumbotron">
         <h3>Wyświetl wszystkie meble w danym katalogu</h3>
-        <div class="option">
-            <select>
-                <option th:each="Catalog: ${catalogList}" th:text="${Catalog.getName()}"></option>
-            </select>
-        </div>
+        <form  th:action="@{/select/fromCatalog}" method="get">
+            <div class="option">
+                <select name="choosenCatalog">
+                    <option th:each="Catalog: ${catalogList}" th:text="${Catalog.getName()}" th:value="${Catalog.getName()}"></option>
+                </select>
+                <input type="submit" value="Pokaz"/>
+            </div>
+        </form>
 
-        <a href="#">Pokaz</a>
     </div>
     <div class="jumbotron">
         <h3>Znajdź wszystkie meble w danym stylu</h3>
-        <div class="option">
-            <select>
-                <option th:each="Style: ${styleList}" th:text="${Style.getName()}"></option>
-            </select>
-        </div>
-        <a href="#">Pokaz</a>
+        <form  th:action="@{/select/fromStyle}" method="get">
+            <div class="option">
+                <select name="choosenStyle">
+                    <option th:each="Style: ${styleList}" th:text="${Style.getName()}" th:value="${Style.getName()}"></option>
+                </select>
+                <input type="submit" value="Pokaz"/>
+            </div>
+        </form>
     </div>
 </div>
 
