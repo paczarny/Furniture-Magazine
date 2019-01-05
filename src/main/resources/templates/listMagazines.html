@@ -14,7 +14,7 @@
             <th>ZipCode</th>
             <th></th>
         </tr>
-        <tr th:each="singleMagazina: ${allMagazines}" th:object="${singleMagazine}">
+        <tr th:each="singleMagazine: ${allMagazines}" th:object="${singleMagazine}">
             <td th:text="*{name}"></td>
             <td th:tetx="*{address.getPlace}"></td>
             <td th:tetx="*{address.getStreet}"></td>
