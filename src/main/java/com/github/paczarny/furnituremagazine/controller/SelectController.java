@@ -52,13 +52,6 @@ public class SelectController {
         return "furnitureList";
     }
 
-    @GetMapping("listAllMagazines")
-    public String listAllMagazines(Model model){
-        List<Magazine> allMagazines = magazineDao.getAll();
-        model.addAttribute("allMagazines", allMagazines);
-        return "magazinesList";
-    }
-
     @GetMapping("producers")
     public String producentsWithAtLeastOneFurniture(Model model){
         List<Producer> allProducers=new LinkedList<>();
