@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>All results</title>
 </head>
 <body>
@@ -24,6 +24,20 @@
 </div>
 <div th:if="${allMagazines.isEmpty()}">
     <h1>There is no magazine yet :(</h1>
+</div>
+<div>
+    <h2>Add new magazine</h2>
+    <form action="#" th:action="@{/magazine}" th:object="${newMagazine}" method="post">
+        <p>Name: <input type="text" th:field="*{name}"/></p>
+        <h5>Address:</h5><br>
+        <p>City: <input type="text" th:field="*{address.place}"/></p>
+        <p>Zip code: <input type="text" th:field="*{address.zipCode}"/></p>
+        <p>Country: <input type="text" th:field="*{address.country}"/></p>
+        <p>House number: <input type="text" th:field="*{address.houseNumber}"/></p>
+        <p>Apartment number: <input type="text" th:field="*{address.apartmentNumber}"/></p>
+        <p>Street: <input type="text" th:field="*{address.street}"/></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
 </div>
 </body>
 </html>
