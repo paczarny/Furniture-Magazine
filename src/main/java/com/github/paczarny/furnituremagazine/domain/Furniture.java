@@ -1,5 +1,7 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+
+
 public class Furniture {
     private String name;
     private double price;

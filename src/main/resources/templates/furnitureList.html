@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>All results</title>
+</head>
+<body>
+<div th:if="not ${furnitures.isEmpty()}">
+    <h1>All furnitures:</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Producer name</th>
+            <th>Style name</th>
+            <th></th>
+        </tr>
+        <tr th:each="singleFurniture: ${furnitures}" th:object="${singleFurniture}">
+            <td th:text="*{name}"></td>
+            <td th:tetx="*{price}"></td>
+            <td th:tetx="*{producer.getName()}"></td>
+            <td th:tetx="*{style.getName()}"></td>
+        </tr>
+    </table>
+</div>
+<div th:if="${furnitures.isEmpty()}">
+    <h1>There is no furniture yet :(</h1>
+</div>
+</body>
+</html>

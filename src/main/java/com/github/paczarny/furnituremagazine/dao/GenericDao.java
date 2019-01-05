@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class GenericDao<T> {
 
     @Autowired
-    private ObjectContainer db;
+    protected ObjectContainer db;
     private Class<T> type;
 
     @SuppressWarnings("unchecked")
