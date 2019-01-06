@@ -1,5 +1,8 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Producer {
     private String name;
 

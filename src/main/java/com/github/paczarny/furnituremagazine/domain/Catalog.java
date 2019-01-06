@@ -1,8 +1,10 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+import javax.persistence.Entity;
 import java.util.LinkedList;
 import java.util.List;
 
+@Entity
 public class Catalog {
     private List<Furniture> furnitureList;
     private String name;

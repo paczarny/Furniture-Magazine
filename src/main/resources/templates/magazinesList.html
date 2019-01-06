@@ -16,9 +16,9 @@
         </tr>
         <tr th:each="singleMagazine: ${allMagazines}" th:object="${singleMagazine}">
             <td th:text="*{name}"></td>
-            <td th:tetx="*{address.getPlace}"></td>
-            <td th:tetx="*{address.getStreet}"></td>
-            <td th:tetx="*{address.getZipCode}"></td>
+            <td th:text="*{address.place}"></td>
+            <td th:text="*{address.street}"></td>
+            <td th:text="*{address.zipCode}"></td>
         </tr>
     </table>
 </div>

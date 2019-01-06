@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class GenericDao<T> {
 
     protected final EntityManager em;
-    private Class<T> type;
+    protected Class<T> type;
 
     @Autowired
     @SuppressWarnings("unchecked")
