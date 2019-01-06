@@ -17,9 +17,10 @@ public class FurnitureDao extends GenericDao<Furniture> {
         super(em);
     }
 
-    public List<Furniture> getAllByStyle(Furniture furniture) {
-        log.error("FurnitureDao.getAllByStyle isn't implemented");
-        // todo: implement
-        return new ArrayList<>();
+
+    @Override
+    public Furniture get(Furniture entity) {
+        return null;
     }
+
 }

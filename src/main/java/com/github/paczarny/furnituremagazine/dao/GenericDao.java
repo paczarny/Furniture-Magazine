@@ -1,14 +1,12 @@
 package com.github.paczarny.furnituremagazine.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-@Component
 public abstract class GenericDao<T> {
 
     protected final EntityManager em;
@@ -29,13 +27,13 @@ public abstract class GenericDao<T> {
         em.flush();
     }
 
-    public List<T> getAll() {
-        return em.createQuery("SELECT e FROM " + type.getSimpleName() + " e", type).getResultList();
+    public List<T> getAll(){
+        Query query = em.createQuery("SELECT c FROM '" + type.getName() + "' c");
+        List results = query.getResultList();
+        return results;
     }
 
-    public T get(T entity) {
-        return em.find(type, entity);
-    }
+    public abstract T get(T entity);
 
     public void delete(T entity) {
         em.remove(entity);

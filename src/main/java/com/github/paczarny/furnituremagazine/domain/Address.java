@@ -1,11 +1,18 @@
 package com.github.paczarny.furnituremagazine.domain;
 
 
+import org.hibernate.annotations.Generated;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class Address {
+    @Id
+    @GeneratedValue
+    private long id;
     private String city;
     private String zipCode;
     private String country;
@@ -23,6 +30,22 @@ public class Address {
         this.city = city;
         this.street = street;
         this.zipCode = zipCode;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public void setPlace(String place) {
