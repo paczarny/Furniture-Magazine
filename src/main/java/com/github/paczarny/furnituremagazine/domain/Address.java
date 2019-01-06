@@ -1,8 +1,10 @@
 package com.github.paczarny.furnituremagazine.domain;
 
 
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
 public class Address {
     private String city;
     private String zipCode;

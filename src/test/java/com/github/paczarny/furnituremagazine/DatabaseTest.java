@@ -1,56 +1,54 @@
 package com.github.paczarny.furnituremagazine;
 
-import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
+import com.github.paczarny.furnituremagazine.dao.AddressDao;
 import com.github.paczarny.furnituremagazine.domain.Address;
-import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Transactional
 public class DatabaseTest {
     @Autowired
-    private ObjectContainer db;
+    private AddressDao addressDao;
 
     @Test
     public void testSavingObjects() {
         // given
         Address address = new Address("Cracow", "30-300", "Poland", "1", "1", "1");
-        assert db.query(Address.class).size() == 0 : "Could not prepare DB for test";
+        assert addressDao.getAll().size() == 0 : "Could not prepare DB for test";
 
         // when save object
-        db.store(address);
+        addressDao.save(address);
 
         // then should be found
-        ObjectSet<Address> addresses = db.query(Address.class);
-        assertEquals(1, addresses.size());
-        Address retreivedAddress = addresses.get(0);
+        List<Address> addressList = addressDao.getAll();
+        assertEquals(1, addressList.size());
+        Address retreivedAddress = addressList.get(0);
         assertEquals(address, retreivedAddress);
 
         // when save 2nd object
         Address address2 = new Address("Waw", "20-200", "Poland", "1", "1", "1");
-        db.store(address2);
+        addressDao.save(address2);
 
         // then should find 2 objects
-        addresses = db.query(Address.class);
-        assertEquals(2, addresses.size());
+        addressList = addressDao.getAll();
+        assertEquals(2, addressList.size());
 
         // when save 1st address multiple times
-        db.store(address);
+        addressDao.save(address2);
 
         // then should be still 2 objects in db
-        addresses = db.query(Address.class);
-        assertEquals(2, addresses.size());
+        addressList = addressDao.getAll();
+        assertEquals(2, addressList.size());
     }
 
-    @After
-    public void tearDown() throws Exception {
-        db.rollback();
-    }
 }
