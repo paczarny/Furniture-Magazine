@@ -1,7 +1,8 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+import javax.persistence.Entity;
 
-
+@Entity
 public class Furniture {
     private String name;
     private double price;
@@ -16,12 +17,12 @@ public class Furniture {
     public Furniture(String name, double price, Producer producer, Style style) {
         this.name = name;
         this.price = price;
-        if(producer!=null)
-        this.producer=producer;
+        if (producer != null)
+            this.producer = producer;
         else this.producer = new Producer();
-        if(style!=null)
-        this.style=style;
-        else this.style=new Style();
+        if (style != null)
+            this.style = style;
+        else this.style = new Style();
     }
 
     public String getName() {

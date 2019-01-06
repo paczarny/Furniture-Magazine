@@ -1,8 +1,10 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Shop {
     private List<Section> sectionList;
     private Address address;

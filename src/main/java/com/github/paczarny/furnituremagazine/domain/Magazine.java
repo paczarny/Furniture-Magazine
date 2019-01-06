@@ -1,10 +1,15 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Magazine {
     private List<Furniture> furnitureList;
+
+    @Embedded
     private Address address;
     private String name;
 
@@ -13,25 +18,25 @@ public class Magazine {
         this.furnitureList = new ArrayList<>();
     }
 
-    public Magazine(String name, Address address, List<Furniture> furnitureList){
-        this.furnitureList=new ArrayList<>();
-        if(furnitureList!=null)
+    public Magazine(String name, Address address, List<Furniture> furnitureList) {
+        this.furnitureList = new ArrayList<>();
+        if (furnitureList != null)
             this.furnitureList.addAll(furnitureList);
-        if(address!=null)
-            this.address=address;
+        if (address != null)
+            this.address = address;
         else this.address = new Address();
-        this.name=name;
+        this.name = name;
     }
 
-    public void addFurniture(Furniture furniture){
+    public void addFurniture(Furniture furniture) {
         this.furnitureList.add(furniture);
     }
 
-    public void deleteFurniture(Furniture furniture){
+    public void deleteFurniture(Furniture furniture) {
         this.addFurniture(furniture);
     }
 
-    public Furniture getFurniture(Furniture furniture){
+    public Furniture getFurniture(Furniture furniture) {
         return this.furnitureList.get(furnitureList.indexOf(furniture));
     }
 

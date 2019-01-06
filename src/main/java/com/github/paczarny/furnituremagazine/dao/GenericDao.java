@@ -1,47 +1,47 @@
 package com.github.paczarny.furnituremagazine.dao;
 
-import com.db4o.ObjectContainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 @Component
 public abstract class GenericDao<T> {
 
-    @Autowired
-    protected ObjectContainer db;
-    private Class<T> type;
+    protected final EntityManager em;
+    protected Class<T> type;
 
+    @Autowired
     @SuppressWarnings("unchecked")
-    GenericDao() {
+    GenericDao(EntityManager em) {
         type = (Class<T>) ((ParameterizedType) this.getClass()
                 .getGenericSuperclass())
                 .getActualTypeArguments()[0];
+        this.em = em;
     }
 
+    @Transactional
     public void save(T entity) {
-        db.store(entity);
+        em.persist(entity);
+        em.flush();
     }
 
     public List<T> getAll() {
-        List<T> list = db.query(type);
-        return list;
+        return em.createQuery("SELECT e FROM " + type.getSimpleName() + " e", type).getResultList();
     }
 
-    public T get(T entity){
-        List<T> list = db.queryByExample(entity);
-        if(!list.isEmpty())
-            return list.get(0);
-        else return null;
+    public T get(T entity) {
+        return em.find(type, entity);
     }
 
-    public void delete(T entity){
-        db.delete(entity);
+    public void delete(T entity) {
+        em.remove(entity);
     }
 
-    public void update(T entity){
-        db.store(entity);
+    public void update(T entity) {
+        save(entity);
     }
 }
