@@ -3,34 +3,43 @@ package com.github.paczarny.furnituremagazine.domain;
 import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Shop {
     private List<Section> sectionList;
-    private Address address;
+    private List<Catalog> catalogsList;
     private String name;
 
     public Shop() {
-        this.address=new Address();
         this.sectionList = new ArrayList<>();
+        this.catalogsList = new ArrayList<>();
     }
 
-    public Shop(String name, Address address, List<Section> sectionList){
-        sectionList = new ArrayList<>();
-        if(sectionList!=null)
-            this.sectionList.addAll(sectionList);
-        if(address!=null)
-            this.address=address;
-        else this.address = new Address();
+    public Shop(String name, List<Section> sectionList, List<Catalog> catalogsList){
         this.name=name;
+        this.sectionList = Objects.requireNonNullElseGet(sectionList, ArrayList::new);
+        this.catalogsList = Objects.requireNonNullElseGet(catalogsList, ArrayList::new);
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void addSection(Section section){
+        sectionList.add(section);
+    }
+
+    public void addCatalog(Catalog catalog){
+        catalogsList.add(catalog);
+    }
+
+    public List<Catalog> getCatalogsList() {
+        return catalogsList;
+    }
+
+    public void setCatalogsList(List<Catalog> catalogsList) {
+        this.catalogsList = catalogsList;
     }
 
     public void setSectionList(List<Section> sectionList) {
@@ -45,8 +54,5 @@ public class Shop {
         return name;
     }
 
-    public Address getAddress() {
-        return address;
-    }
 
 }

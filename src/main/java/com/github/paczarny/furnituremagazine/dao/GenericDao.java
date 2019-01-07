@@ -28,9 +28,8 @@ public abstract class GenericDao<T> {
     }
 
     public List<T> getAll(){
-        Query query = em.createQuery("SELECT c FROM '" + type.getName() + "' c");
-        List results = query.getResultList();
-        return results;
+
+        return null;
     }
 
     public abstract T get(T entity);

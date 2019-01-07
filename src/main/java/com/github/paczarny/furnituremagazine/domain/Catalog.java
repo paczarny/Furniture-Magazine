@@ -1,20 +1,22 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-@Entity
+@Embeddable
 public class Catalog {
+    @Transient
     private List<Furniture> furnitureList;
     private String name;
 
-    public Catalog() { this.furnitureList = new LinkedList<>(); }
+    public Catalog() { this.furnitureList = new ArrayList<>(); }
 
-    public Catalog(String name, List<Furniture> furnitureList) {
-        this.furnitureList = new LinkedList<>();
-        if(!(furnitureList==null))
-            this.furnitureList.addAll(furnitureList);
+    public Catalog(String name) {
+        this.furnitureList = new ArrayList<>();
         this.name=name;
     }
 

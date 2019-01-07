@@ -31,7 +31,7 @@ public class SelectController {
     public String selectAllFromCatalog(@RequestParam(defaultValue="",
             required = true) String choosenCatalog, Model model){
         List<Furniture> list;
-        Catalog catalog = catalogDao.get(new Catalog(choosenCatalog, null));
+        Catalog catalog = catalogDao.get(new Catalog(choosenCatalog));
         if(catalog!=null)
             list = catalog.getFurnitureList();
         else
@@ -46,8 +46,9 @@ public class SelectController {
             required = true) String choosenStyle, Model model){
         List<Furniture> list;
         Style style = new Style(choosenStyle);
-        Furniture furniture = new Furniture(null, 0.0,null, style);
-        list = furnitureDao.getAllByStyle(furniture);
+        Furniture furniture = new Furniture(null, 0.0,null, null,null,null);
+        list=null;
+        //list = furnitureDao.getAllByStyle(furniture);
         model.addAttribute("furnitures", list);
         return "furnitureList";
     }

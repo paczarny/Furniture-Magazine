@@ -1,8 +1,8 @@
 package com.github.paczarny.furnituremagazine.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 
-@Entity
+@Embeddable
 public class Style {
     private String name;
 

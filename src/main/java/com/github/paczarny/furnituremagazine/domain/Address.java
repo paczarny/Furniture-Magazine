@@ -1,18 +1,11 @@
 package com.github.paczarny.furnituremagazine.domain;
 
 
-import org.hibernate.annotations.Generated;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 import java.util.Objects;
 
-@Entity
+@Embeddable
 public class Address {
-    @Id
-    @GeneratedValue
-    private long id;
     private String city;
     private String zipCode;
     private String country;
@@ -20,8 +13,8 @@ public class Address {
     private String apartmentNumber;
     private String street;
 
-    public Address() {
-    }
+
+    public Address() { }
 
     public Address(String city, String zipCode, String country, String houseNumber, String apartmentNumber, String street) {
         this.apartmentNumber = apartmentNumber;
@@ -32,13 +25,6 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId() {
-        return id;
-    }
 
     public void setCity(String city) {
         this.city = city;

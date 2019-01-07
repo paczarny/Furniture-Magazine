@@ -4,12 +4,11 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Magazine {
     private List<Furniture> furnitureList;
-
-    @Embedded
     private Address address;
     private String name;
 
@@ -19,12 +18,8 @@ public class Magazine {
     }
 
     public Magazine(String name, Address address, List<Furniture> furnitureList) {
-        this.furnitureList = new ArrayList<>();
-        if (furnitureList != null)
-            this.furnitureList.addAll(furnitureList);
-        if (address != null)
-            this.address = address;
-        else this.address = new Address();
+        this.furnitureList = Objects.requireNonNullElseGet(furnitureList, ArrayList::new);
+        this.address = Objects.requireNonNullElseGet(address, Address::new);
         this.name = name;
     }
 
@@ -33,7 +28,7 @@ public class Magazine {
     }
 
     public void deleteFurniture(Furniture furniture) {
-        this.addFurniture(furniture);
+        this.furnitureList.remove(furniture);
     }
 
     public Furniture getFurniture(Furniture furniture) {
