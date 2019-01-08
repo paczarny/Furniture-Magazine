@@ -20,13 +20,11 @@ public class HomeController {
     @Autowired
     StyleDao styleDao;
 
-
-
     @RequestMapping("/")
     public String home(Model model) {
         List<Catalog> catalogList = shopDao.getCatalogList();
         model.addAttribute(catalogList);
-        List<Style> styleList = new ArrayList<>();
+        List<Style> styleList = styleDao.getAllStyles();
         model.addAttribute(styleList);
         return "home";
     }
