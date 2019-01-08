@@ -1,6 +1,5 @@
 package com.github.paczarny.furnituremagazine;
 
-import com.github.paczarny.furnituremagazine.dao.AddressDao;
 import com.github.paczarny.furnituremagazine.dao.MagazineDao;
 import com.github.paczarny.furnituremagazine.dao.ShopDao;
 import com.github.paczarny.furnituremagazine.domain.*;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -43,9 +41,6 @@ public class DatabaseTest {
 
         Shop shop1 = shopDao.get(shop);
 
-        System.out.println(shop.getName());
-        System.out.println(shop.getCatalogsList().get(0).getName());
-        System.out.println(shop.getSectionList().get(0).getName());
 
 
 

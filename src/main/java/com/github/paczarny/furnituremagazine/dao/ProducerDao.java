@@ -10,17 +10,20 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
+@Transactional
 public class ProducerDao extends GenericDao<Producer> {
     ProducerDao(EntityManager em) {
         super(em);
     }
 
+    @Override
+    public List<Producer> getAll() {
+        return null;
+    }
 
-    @Transactional
+
     @Override
     public Producer get(Producer entity) {
-        TypedQuery<Producer> query = em.createQuery(
-                "SELECT c FROM Producer c WHERE c.name = ?1", Producer.class);
-        return query.setParameter(1, entity.getName()).getSingleResult();
+        return null;
     }
 }

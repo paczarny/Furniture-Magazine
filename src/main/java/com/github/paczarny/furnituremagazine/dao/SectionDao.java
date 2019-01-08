@@ -1,6 +1,6 @@
 package com.github.paczarny.furnituremagazine.dao;
 
-import com.github.paczarny.furnituremagazine.domain.Style;
+import com.github.paczarny.furnituremagazine.domain.Section;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -9,19 +9,20 @@ import java.util.List;
 
 @Component
 @Transactional
-public class StyleDao extends GenericDao<Style> {
+public class SectionDao extends GenericDao<Section> {
 
-    public StyleDao(EntityManager em){
+    SectionDao(EntityManager em) {
         super(em);
     }
 
+
     @Override
-    public List<Style> getAll() {
+    public List<Section> getAll() {
         return null;
     }
 
     @Override
-    public Style get(Style entity) {
+    public Section get(Section entity) {
         return null;
     }
 }

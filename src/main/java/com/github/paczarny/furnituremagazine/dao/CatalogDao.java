@@ -12,17 +12,20 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
+@Transactional
 public class CatalogDao extends GenericDao<Catalog> {
     CatalogDao(EntityManager em) {
         super(em);
     }
 
+    @Override
+    public List<Catalog> getAll() {
+        return null;
+    }
 
-    @Transactional
+
     @Override
     public Catalog get(Catalog entity) {
-        TypedQuery<Catalog> query = em.createQuery(
-                "SELECT c FROM Catalog c WHERE c.name = ?1", Catalog.class);
-        return query.setParameter(1, entity.getName()).getSingleResult();
+        return null;
     }
 }

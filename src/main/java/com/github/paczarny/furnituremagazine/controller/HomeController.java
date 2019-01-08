@@ -1,7 +1,7 @@
 package com.github.paczarny.furnituremagazine.controller;
 
 import com.github.paczarny.furnituremagazine.dao.CatalogDao;
-import com.github.paczarny.furnituremagazine.dao.MagazineDao;
+import com.github.paczarny.furnituremagazine.dao.ShopDao;
 import com.github.paczarny.furnituremagazine.dao.StyleDao;
 import com.github.paczarny.furnituremagazine.domain.Catalog;
 import com.github.paczarny.furnituremagazine.domain.Style;
@@ -10,21 +10,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class HomeController {
     @Autowired
-    CatalogDao catalogDao;
+    ShopDao shopDao;
     @Autowired
     StyleDao styleDao;
 
 
+
     @RequestMapping("/")
     public String home(Model model) {
-        List<Catalog> catalogList = catalogDao.getAll();
+        List<Catalog> catalogList = shopDao.getCatalogList();
         model.addAttribute(catalogList);
-        List<Style> styleList = styleDao.getAll();
+        List<Style> styleList = new ArrayList<>();
         model.addAttribute(styleList);
         return "home";
     }
