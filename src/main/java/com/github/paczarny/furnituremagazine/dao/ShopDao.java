@@ -45,9 +45,6 @@ public class ShopDao extends GenericDao<Shop>{
                 "SELECT c FROM Shop c", Shop.class);
         Shop shop = query.getSingleResult();
 
-        System.out.println(shop.getName());
-        System.out.println(shop.getCatalogsList().get(0).getName());
-        System.out.println(shop.getSectionList().get(0).getName());
         return shop.getSectionList();
     }
 }

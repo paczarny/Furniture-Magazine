@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -19,62 +21,44 @@ import static org.junit.Assert.assertEquals;
 public class DatabaseTest {
     @Autowired
     private ShopDao shopDao;
-    @Autowired
-    private MagazineDao magazineDao;
 
     @Test
     public void testSavingObjects() {
-        Producer producer = new Producer("producer");
-        Style style = new Style("style");
-        Address address = new Address("Cracow", "30-300", "Poland", "1", "1", "1");
+        // given
+        Shop shop = new Shop("shop", null, null);
         Catalog catalog = new Catalog("catalog");
         Section section = new Section("section");
-        Furniture furniture = new Furniture("krzeslo", 22, producer, style, section, catalog);
-        Magazine magazine = new Magazine("magazine", address, null);
-        magazine.addFurniture(furniture);
-        Shop shop = new Shop("shop", null, null);
         shop.addCatalog(catalog);
         shop.addSection(section);
-
-        magazineDao.save(magazine);
-        shopDao.save(shop);
-
-        Shop shop1 = shopDao.get(shop);
-
-
-
-
-
-
-
-
-        /*// given
-        Address address = new Address("Cracow", "30-300", "Poland", "1", "1", "1");
-        assert addressDao.getAll().size() == 0 : "Could not prepare DB for test";
+        assert shopDao.getAll().size() == 0 : "Could not prepare DB for test";
 
         // when save object
-        addressDao.save(address);
+        shopDao.save(shop);
 
         // then should be found
-        List<Address> addressList = addressDao.getAll();
-        assertEquals(1, addressList.size());
-        Address retreivedAddress = addressList.get(0);
-        assertEquals(address, retreivedAddress);
+        List<Shop> shopList = shopDao.getAll();
+        assertEquals(1, shopList.size());
+        Shop retreivedShop = shopDao.get(new Shop("shop",null,null));
+        assertEquals(shop, retreivedShop);
 
         // when save 2nd object
-        Address address2 = new Address("Waw", "20-200", "Poland", "1", "1", "1");
-        addressDao.save(address2);
+        Shop shop1 = new Shop("shop1", null, null);
+        Catalog catalog1 = new Catalog("catalog1");
+        Section section1 = new Section("section1");
+        shop1.addCatalog(catalog1);
+        shop1.addSection(section1);
+        shopDao.save(shop1);
 
         // then should find 2 objects
-        addressList = addressDao.getAll();
-        assertEquals(2, addressList.size());
+        shopList = shopDao.getAll();
+        assertEquals(2, shopList.size());
 
         // when save 1st address multiple times
-        addressDao.save(address2);
+        shopDao.save(shop1);
 
         // then should be still 2 objects in db
-        addressList = addressDao.getAll();
-        assertEquals(2, addressList.size());*/
+        shopList = shopDao.getAll();
+        assertEquals(2, shopList.size());
     }
 
 }
