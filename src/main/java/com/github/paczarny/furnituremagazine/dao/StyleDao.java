@@ -6,21 +6,33 @@ import com.github.paczarny.furnituremagazine.domain.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Component
-public class StyleDao{
+public class StyleDao extends GenericDao<Magazine>{
 
-    @Autowired
-    MagazineDao magazineDao;
+    StyleDao(EntityManager em) {
+        super(em);
+    }
+
+    @Override
+    public List<Magazine> getAll() {
+        return null;
+    }
+
+    @Override
+    public Magazine get(Magazine entity) {
+        return null;
+    }
 
 
     public List<Style> getAllStyles()  {
-        List<Furniture> furnitures = getFurnitureList();
-        if(furnitures==null)
+        List<Furniture> furnitures = getAllFurnitures();
+        if (furnitures.size() == 0)
             return new ArrayList<>();
         Set<Style> styleSet = new HashSet<>();
         for(Furniture f : furnitures)
@@ -29,11 +41,32 @@ public class StyleDao{
     }
 
 
-    private List<Furniture> getFurnitureList(){
-        List<Magazine> magazines = magazineDao.getAll();
-        if(magazines.size()==0)
-            return null;
-        List<Furniture> furnitures = magazines.get(0).getFurnitureList();
-        return furnitures;
+
+    public List<Furniture> getFurnituresOfStyle(Style style) {
+        List<Furniture> furnitures = getAllFurnitures();
+        if (furnitures.size() == 0)
+            return new ArrayList<>();
+        List<Furniture> resultList = new ArrayList<>();
+        for (Furniture f : furnitures) {
+            if (f.getStyle().equals(style))
+                resultList.add(f);
+        }
+        return resultList;
     }
+
+
+        private List<Furniture> getAllFurnitures(){
+            TypedQuery<Magazine> query = em.createQuery(
+                    "SELECT c FROM Magazine c", Magazine.class);
+            List<Magazine> magazines = query.getResultList();
+            if(magazines.size()==0)
+                return new ArrayList<>();
+            List<Furniture> furnitures = new ArrayList<>();
+            for(Magazine m : magazines)
+                furnitures.addAll(m.getFurnitureList());
+            return furnitures;
+    }
+
+
+
 }

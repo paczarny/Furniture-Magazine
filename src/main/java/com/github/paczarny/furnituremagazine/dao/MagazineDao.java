@@ -28,7 +28,10 @@ public class MagazineDao extends GenericDao<Magazine> {
     public Magazine get(Magazine entity) {
         TypedQuery<Magazine> query = em.createQuery(
                 "SELECT c FROM Magazine c WHERE c.name = ?1", Magazine.class);
-        return query.setParameter(1, entity.getName()).getSingleResult();
+        List<Magazine> magazineList = query.getResultList();
+        if(magazineList.size()==0)
+            return new Magazine();
+        return magazineList.get(0);
     }
 
 }

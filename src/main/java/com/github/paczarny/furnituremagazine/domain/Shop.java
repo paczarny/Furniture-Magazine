@@ -22,6 +22,7 @@ public class Shop {
         this.catalogsList = Objects.requireNonNullElseGet(catalogsList, ArrayList::new);
     }
 
+
     public void setName(String name) {
         this.name = name;
     }

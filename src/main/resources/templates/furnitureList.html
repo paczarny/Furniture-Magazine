@@ -16,9 +16,9 @@
         </tr>
         <tr th:each="singleFurniture: ${furnitures}" th:object="${singleFurniture}">
             <td th:text="*{name}"></td>
-            <td th:tetx="*{price}"></td>
-            <td th:tetx="*{producer.getName()}"></td>
-            <td th:tetx="*{style.getName()}"></td>
+            <td th:text="*{price}"></td>
+            <td th:text="*{producer.getName()}"></td>
+            <td th:text="*{style.getName()}"></td>
         </tr>
     </table>
 </div>
