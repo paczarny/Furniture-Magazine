@@ -6,6 +6,7 @@ import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @Embeddable
 public class Catalog {
@@ -44,4 +45,17 @@ public class Catalog {
         this.furnitureList.remove(furniture);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Catalog catalog = (Catalog) o;
+        return Objects.equals(furnitureList, catalog.furnitureList) &&
+                name.equals(catalog.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(furnitureList, name);
+    }
 }

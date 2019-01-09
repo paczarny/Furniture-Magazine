@@ -59,4 +59,18 @@ public class Magazine {
         this.address = address;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Magazine magazine = (Magazine) o;
+        return Objects.equals(furnitureList, magazine.furnitureList) &&
+                Objects.equals(address, magazine.address) &&
+                name.equals(magazine.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(furnitureList, address, name);
+    }
 }

@@ -75,4 +75,22 @@ public class Furniture {
     public void setStyle(Style style) {
         this.style = style;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Furniture furniture = (Furniture) o;
+        return Double.compare(furniture.price, price) == 0 &&
+                name.equals(furniture.name) &&
+                Objects.equals(producer, furniture.producer) &&
+                Objects.equals(style, furniture.style) &&
+                Objects.equals(section, furniture.section) &&
+                Objects.equals(catalog, furniture.catalog);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price, producer, style, section, catalog);
+    }
 }

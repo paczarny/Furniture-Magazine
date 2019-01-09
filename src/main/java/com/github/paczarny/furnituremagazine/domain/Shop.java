@@ -54,5 +54,18 @@ public class Shop {
         return name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shop shop = (Shop) o;
+        return Objects.equals(sectionList, shop.sectionList) &&
+                Objects.equals(catalogsList, shop.catalogsList) &&
+                name.equals(shop.name);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(sectionList, catalogsList, name);
+    }
 }
