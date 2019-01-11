@@ -15,16 +15,11 @@ public class Furniture {
     @ManyToOne
     private Style style;
 
-    public Furniture() {
-        this.style = new Style();
-        this.producer = new Producer();
-    }
-
     public Furniture(String name, double price, Producer producer, Style style) {
         this.name = name;
         this.price = price;
-        this.producer = Objects.requireNonNullElseGet(producer, Producer::new);
-        this.style = Objects.requireNonNullElseGet(style, Style::new);
+        this.producer = producer;
+        this.style = style;
     }
 
     public String getName() {

@@ -1,6 +1,5 @@
 package com.github.paczarny.furnituremagazine.dao;
 
-import com.github.paczarny.furnituremagazine.domain.Magazine;
 import com.github.paczarny.furnituremagazine.domain.Producer;
 import org.springframework.stereotype.Component;
 
@@ -25,5 +24,11 @@ public class ProducerDao extends GenericDao<Producer> {
     @Override
     public Producer get(Producer entity) {
         return null;
+    }
+
+    public List<Producer> listAllWithAtLeastTwoFurniture() {
+        TypedQuery<Producer> query = em.createQuery(
+                "SELECT f.producer FROM Furniture f GROUP BY f.producer HAVING COUNT(f) > 1", Producer.class);
+        return query.getResultList();
     }
 }
