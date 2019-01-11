@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 @Transactional
@@ -30,13 +31,12 @@ public class CatalogDao extends GenericDao<Catalog> {
         return null;
     }
 
-    public List<Furniture> listAllFurnituresByCatalog(String catalogName) {
+    public List<Furniture> listAllFurnituresByCatalog(String catalogName) throws NoSuchElementException {
         TypedQuery<Catalog> query = em.createQuery(
                 "SELECT c FROM Catalog c where c.name = :catalog", Catalog.class);
         query.setParameter("catalog", catalogName);
-        List<Catalog> catalogs = query.getResultList();
-        if(catalogs.size()==0)
-            return new ArrayList<>();
-        return catalogs.get(0).getFurnitureList();
+        if(query.getResultList().size()==0)
+            throw new NoSuchElementException("No catalog found in Database");
+        return query.getSingleResult().getFurnitureList();
     }
 }
