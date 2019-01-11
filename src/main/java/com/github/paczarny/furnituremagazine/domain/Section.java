@@ -1,8 +1,7 @@
 package com.github.paczarny.furnituremagazine.domain;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.Embedded;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,18 +9,14 @@ import java.util.Objects;
 @Embeddable
 public class Section {
     private String name;
-    @Transient
+
+    @Embedded
     private List<Furniture> furnitureList;
 
-    public Section() {
+    public Section(String name) {
         this.furnitureList = new ArrayList<>();
+        this.name = name;
     }
-
-    public Section(String name){
-        this.furnitureList = new ArrayList<>();
-        this.name=name;
-    }
-
 
     public void setName(String name) {
         this.name = name;
