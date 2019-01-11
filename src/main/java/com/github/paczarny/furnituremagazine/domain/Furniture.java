@@ -1,10 +1,10 @@
 package com.github.paczarny.furnituremagazine.domain;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.util.Objects;
 
-@Embeddable
+@Entity
 public class Furniture {
     private String name;
     private double price;
@@ -20,7 +20,7 @@ public class Furniture {
         this.producer = new Producer();
     }
 
-    public Furniture(String name, double price, Producer producer, Style style, Section section, Catalog catalog) {
+    public Furniture(String name, double price, Producer producer, Style style) {
         this.name = name;
         this.price = price;
         this.producer = Objects.requireNonNullElseGet(producer, Producer::new);

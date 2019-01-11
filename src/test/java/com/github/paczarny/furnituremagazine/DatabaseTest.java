@@ -28,7 +28,6 @@ public class DatabaseTest {
         Shop shop = new Shop("shop", null, null);
         Catalog catalog = new Catalog("catalog");
         Section section = new Section("section");
-        shop.addCatalog(catalog);
         shop.addSection(section);
         assert shopDao.getAll().size() == 0 : "Could not prepare DB for test";
 
@@ -45,7 +44,6 @@ public class DatabaseTest {
         Shop shop1 = new Shop("shop1", null, null);
         Catalog catalog1 = new Catalog("catalog1");
         Section section1 = new Section("section1");
-        shop1.addCatalog(catalog1);
         shop1.addSection(section1);
         shopDao.save(shop1);
 
