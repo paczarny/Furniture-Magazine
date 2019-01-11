@@ -36,4 +36,5 @@ public class FurnitureDao extends GenericDao<Furniture> {
         query.setParameter("style", styleName);
         return query.getResultList();
     }
+
 }
