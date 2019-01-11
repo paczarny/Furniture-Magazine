@@ -1,5 +1,6 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -12,7 +13,7 @@ public class Shop {
     @OneToMany
     private List<Section> sectionList;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
 
     private String name;
