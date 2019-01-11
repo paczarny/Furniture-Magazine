@@ -1,16 +1,17 @@
 package com.github.paczarny.furnituremagazine.domain;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import java.util.Objects;
 
-@Embeddable
+@Entity
 public class Style {
     private String name;
 
-    public Style() {}
+    public Style() {
+    }
 
-    public Style(String name){
-        this.name=name;
+    public Style(String name) {
+        this.name = name;
     }
 
     public String getName() {

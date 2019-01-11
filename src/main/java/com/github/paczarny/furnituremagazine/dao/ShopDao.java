@@ -38,15 +38,6 @@ public class ShopDao extends GenericDao<Shop> {
         return shopList.get(0);
     }
 
-    public List<Catalog> getCatalogList() {
-        TypedQuery<Shop> query = em.createQuery(
-                "SELECT c FROM Shop c", Shop.class);
-        List<Shop> shopList = getAll();
-        if (shopList.size() == 0)
-            return new ArrayList<>();
-        return shopList.get(0).getCatalogsList();
-    }
-
     public List<Section> getSectionList() {
         TypedQuery<Shop> query = em.createQuery(
                 "SELECT c FROM Shop c", Shop.class);

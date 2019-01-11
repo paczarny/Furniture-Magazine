@@ -1,10 +1,10 @@
 package com.github.paczarny.furnituremagazine.domain;
 
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import java.util.Objects;
 
-@Embeddable
+@Entity
 public class Address {
     private String city;
     private String zipCode;
@@ -14,7 +14,8 @@ public class Address {
     private String street;
 
 
-    public Address() { }
+    public Address() {
+    }
 
     public Address(String city, String zipCode, String country, String houseNumber, String apartmentNumber, String street) {
         this.apartmentNumber = apartmentNumber;

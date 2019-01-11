@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,10 +18,12 @@ public class HomeController {
     ShopDao shopDao;
     @Autowired
     StyleDao styleDao;
+    @Autowired
+    CatalogDao catalogDao;
 
     @RequestMapping("/")
     public String home(Model model) {
-        List<Catalog> catalogList = shopDao.getCatalogList();
+        List<Catalog> catalogList = catalogDao.getAll();
         model.addAttribute(catalogList);
         List<Style> styleList = styleDao.getAllStyles();
         model.addAttribute(styleList);

@@ -1,16 +1,17 @@
 package com.github.paczarny.furnituremagazine.domain;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import java.util.Objects;
 
-@Embeddable
+@Entity
 public class Producer {
     private String name;
 
-    public Producer() {}
+    public Producer() {
+    }
 
-    public Producer(String  name) {
-        this.name=name;
+    public Producer(String name) {
+        this.name = name;
     }
 
     public void setName(String name) {

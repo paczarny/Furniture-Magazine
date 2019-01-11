@@ -1,24 +1,25 @@
 package com.github.paczarny.furnituremagazine.domain;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-@Embeddable
+@Entity
 public class Catalog {
-    @Transient
+    @Embedded
     private List<Furniture> furnitureList;
+
     private String name;
 
-    public Catalog() { this.furnitureList = new ArrayList<>(); }
+    public Catalog() {
+        this.furnitureList = new ArrayList<>();
+    }
 
     public Catalog(String name) {
         this.furnitureList = new ArrayList<>();
-        this.name=name;
+        this.name = name;
     }
 
     public void setName(String name) {
@@ -37,11 +38,11 @@ public class Catalog {
         return furnitureList;
     }
 
-    public void addFurniture(Furniture furniture){
+    public void addFurniture(Furniture furniture) {
         this.furnitureList.add(furniture);
     }
 
-    public void deleteFurniture(Furniture furniture){
+    public void deleteFurniture(Furniture furniture) {
         this.furnitureList.remove(furniture);
     }
 

@@ -1,15 +1,21 @@
 package com.github.paczarny.furnituremagazine.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Magazine {
+    @Embedded
     private List<Furniture> furnitureList;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address;
+
     private String name;
 
     public Magazine() {
