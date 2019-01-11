@@ -1,22 +1,23 @@
 package com.github.paczarny.furnituremagazine.domain;
 
 import javax.persistence.Embeddable;
+import javax.persistence.ManyToOne;
 import java.util.Objects;
 
 @Embeddable
 public class Furniture {
     private String name;
     private double price;
+
+    @ManyToOne
     private Producer producer;
+
+    @ManyToOne
     private Style style;
-    private Section section;
-    private Catalog catalog;
 
     public Furniture() {
         this.style = new Style();
         this.producer = new Producer();
-        this.section = new Section();
-        this.catalog = new Catalog();
     }
 
     public Furniture(String name, double price, Producer producer, Style style, Section section, Catalog catalog) {
@@ -24,24 +25,6 @@ public class Furniture {
         this.price = price;
         this.producer = Objects.requireNonNullElseGet(producer, Producer::new);
         this.style = Objects.requireNonNullElseGet(style, Style::new);
-        this.section = Objects.requireNonNullElseGet(section, Section::new);
-        this.catalog = Objects.requireNonNullElseGet(catalog, Catalog::new);
-    }
-
-    public Catalog getCatalog() {
-        return catalog;
-    }
-
-    public void setCatalog(Catalog catalog) {
-        this.catalog = catalog;
-    }
-
-    public Section getSection() {
-        return section;
-    }
-
-    public void setSection(Section section) {
-        this.section = section;
     }
 
     public String getName() {
@@ -84,13 +67,11 @@ public class Furniture {
         return Double.compare(furniture.price, price) == 0 &&
                 name.equals(furniture.name) &&
                 Objects.equals(producer, furniture.producer) &&
-                Objects.equals(style, furniture.style) &&
-                Objects.equals(section, furniture.section) &&
-                Objects.equals(catalog, furniture.catalog);
+                Objects.equals(style, furniture.style);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, price, producer, style, section, catalog);
+        return Objects.hash(name, price, producer, style);
     }
 }
